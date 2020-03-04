@@ -26,7 +26,6 @@ public class ProyectoHorario {
         String[] horas = {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00", "01:00"};
         String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
         int resposta;
-
         do {
             System.out.println("\nQue queres facer?"
                     + "\n 1.-Añadir empleado."
@@ -42,10 +41,16 @@ public class ProyectoHorario {
                     plantilla.add(obx.crearEmpleado());
                     break;
                 case 2:
+                    try{
                     obx.mostrar(plantilla);
+                    }catch(NullPointerException ex){
+                        System.err.println("Error. "+ex.getMessage());
+                    }
+                    finally{
                     break;
+                    }
                 case 3:
-                    obx.crearHorario(horario, plantilla);
+                    obx.crearHorario(horario, plantilla, dias, horas);
                     break;
                 case 4:
                     obx.amosarHorario(horario, horas, dias);

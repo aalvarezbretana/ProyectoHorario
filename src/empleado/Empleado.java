@@ -15,9 +15,12 @@ public class Empleado implements Comparable {
     String apellido1;
     String apellido2;
     int num_horas;
+    private int n_id;
+    public static int id = 1;
 
     public Empleado() {
-
+        n_id = id;
+        id++;
     }
 
     public Empleado(String nombre, String apellido1, String apellido2, int num_horas) {
@@ -25,6 +28,8 @@ public class Empleado implements Comparable {
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.num_horas = num_horas;
+        n_id = id;
+        id++;
     }
 
     public String getNombre() {
@@ -57,6 +62,10 @@ public class Empleado implements Comparable {
 
     public void setNum_horas(int num_horas) {
         this.num_horas = num_horas;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

@@ -22,9 +22,9 @@ public class Metodos {
         return e;
     }
 
-    public void mostrar(ArrayList<Empleado> plantilla) {
+    public void mostrar(ArrayList<Empleado> plantilla) throws NullPointerException {
         if (plantilla.isEmpty()) {
-            throw new NullPointerException("El ArrayList está vacío");
+            throw new NullPointerException("El ArrayList está vacío.");
         } else {
             Collections.sort(plantilla);
             Iterator it = plantilla.iterator();
@@ -33,16 +33,48 @@ public class Metodos {
             }
         }
     }
-  
-    public String[][] crearHorario(String[][] horario, ArrayList<Empleado> plantilla) {
-        for (int i = 0; i < horario.length; i++) {
-            for (int j = 0; j < horario[i].length; j++) {
-                horario[i][j] = plantilla.get(0).getNombre();
-            }
+
+    public int horasTotales(ArrayList<Empleado> plantilla) {
+        int acumulador = 0;
+        for (int i = 0; i < plantilla.size(); i++) {
+            acumulador = acumulador + plantilla.get(i).getNum_horas();
         }
-        return horario;
+        return acumulador;
     }
-      public void amosarHorario(String[][] horario, String[] horas, String[] dias) {
+
+    public void crearHorario(String[][] horario, ArrayList<Empleado> plantilla, String[] dias, String[] horas) {
+        int aleatorio = (int) Math.floor(Math.random() * (plantilla.size()));
+        int numero = 0;
+        int num_ale;
+        int horasT = horasTotales(plantilla);
+        if (horasT >= 119) {
+            for (int k = 0; k < dias.length; k++) {
+                do {
+                    num_ale = aleatorio;
+                    aleatorio = (int) Math.floor(Math.random() * (plantilla.size()));
+                    numero = 0;
+                } while (num_ale == aleatorio);
+                numero = 0;
+                for (int i = 0; i < horas.length; i++) {
+                    if (numero == 8) {
+                        do {
+                            num_ale = aleatorio;
+                            aleatorio = (int) Math.floor(Math.random() * (plantilla.size()));
+                            numero = 0;
+                        } while (num_ale == aleatorio);
+                    }
+                    horario[i][k] = plantilla.get(aleatorio).getNombre();
+                    numero++;
+                }
+            }
+            amosarHorario(horario, horas, dias);
+
+        } else {
+            System.out.println("No se cumplen las minimas horas para cubrir el horario total semanal");
+        }
+    }
+
+    public void amosarHorario(String[][] horario, String[] horas, String[] dias) {
         System.out.print("Horas/Días");
         for (int i = 0; i < dias.length; i++) {
             System.out.print("   " + dias[i]);
@@ -54,5 +86,4 @@ public class Metodos {
             }
         }
     }
-
 }
