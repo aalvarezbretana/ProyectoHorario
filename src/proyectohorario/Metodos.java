@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectohorario;
 
 import libreriaproyecto.PedirDatos;
 import empleado.Empleado;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +17,7 @@ import java.util.Scanner;
  * @author aalvarezbretana
  */
 public class Metodos {
-
+Scanner sc;
     PrintWriter esc = null;
     FileWriter arch;
 
@@ -84,7 +81,7 @@ public class Metodos {
                     numero++;
                 }
             }
-            amosarHorario(horario, horas, dias);
+            System.out.println("Horario creado");
         } else {
             System.err.println("No se cumplen las horas mínimas "
                     + "para cubrir el horario total semanal(119 horas)");
@@ -260,7 +257,7 @@ public class Metodos {
         if (plantilla.isEmpty()) {
             throw new NullPointerException("El ArrayList está vacío.");
         } else {
-            Scanner sc = new Scanner(System.in);
+            sc = new Scanner(System.in);
             System.out.println("Qué empleado desea dar de baja?(Buscar por apellido)");
             String apellido = sc.nextLine();
             for (int i = 0; i < plantilla.size(); i++) {
@@ -279,4 +276,29 @@ public class Metodos {
 
         }
     }
+public void lerEmpleados(File fich,ArrayList<Empleado>plantilla) throws FileNotFoundException{
+if (!fich.exists()) {
+        throw new NullPointerException("El ArrayList está vacío.");
+    } else {
+    if (!plantilla.isEmpty()) {
+    plantilla.removeAll(plantilla);
+        System.out.println("ArrayList borrado");
+    }
+    sc = new Scanner(fich).useDelimiter(",\\s*"); //separa con comas
+    while(sc.hasNextLine()){
+    String nombre=sc.next();
+    String apellido=sc.next();
+    String apellido2=sc.next();
+    int numHoras= Integer.parseInt(sc.next());
+    sc.nextLine();
+    Empleado empl = new Empleado(nombre,apellido,apellido2,numHoras);
+    plantilla.add(empl);
+        System.out.println("Empleado añadido al ArrayList");
+    }  
+    
+    
+
+    
+}    
+}    
 }

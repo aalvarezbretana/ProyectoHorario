@@ -1,0 +1,18 @@
+Horas/Días   Lunes      Martes     Miércoles  Jueves     Viernes    Sábado     Domingo    
+ 09:00       Noe        Marcos     Ivan       Ivan       Marcos     Abelardo   Abelardo   
+ 10:00       Noe        Marcos     Ivan       Ivan       Marcos     Abelardo   Abelardo   
+ 11:00       Noe        Marcos     Ivan       Ivan       Marcos     Abelardo   Abelardo   
+ 12:00       Noe        Marcos     Ivan       Ivan       Marcos     Abelardo   Abelardo   
+ 13:00       Noe        Marcos     Ivan       Ivan       Marcos     Abelardo   Abelardo   
+ 14:00       Noe        Marcos     Ivan       Ivan       Marcos     Abelardo   Abelardo   
+ 15:00       Noe        Marcos     Ivan       Ivan       Marcos     Abelardo   Abelardo   
+ 16:00       Noe        Marcos     Ivan       Ivan       Marcos     Abelardo   Abelardo   
+ 17:00       Abelardo   Ivan       Abelardo   Noe        Abelardo   Ivan       Marcos     
+ 18:00       Abelardo   Ivan       Abelardo   Noe        Abelardo   Ivan       Marcos     
+ 19:00       Abelardo   Ivan       Abelardo   Ivan       Abelardo   Ivan       Marcos     
+ 20:00       Abelardo   Ivan       Abelardo   Ivan       Abelardo   Ivan       Marcos     
+ 21:00       Abelardo   Ivan       Abelardo   Ivan       Abelardo   Ivan       Marcos     
+ 22:00       Abelardo   Ivan       Abelardo   Ivan       Abelardo   Ivan       Marcos     
+ 23:00       Abelardo   Ivan       Abelardo   Ivan       Abelardo   Ivan       Marcos     
+ 24:00       Abelardo   Ivan       Abelardo   Ivan       Abelardo   Marcos     Marcos     
+ 01:00       Ivan       Marcos     Marcos     Ivan       Ivan       Marcos     Marcos     

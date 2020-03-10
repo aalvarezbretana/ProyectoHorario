@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectohorario;
 
 import empleado.Empleado;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -68,6 +66,20 @@ public class ProyectoHorario {
                         System.err.println("Error. " + ex.getMessage());
                     }
                     break;
+                case 7:
+                    try {
+                        int opcion=Integer.parseInt(JOptionPane.showInputDialog("Aviso. "
+                                + "Esto borrará todos los elementos del ArrayList"
+                                + "\n1 - Aceptar\n2 - Rechazar"));
+                        if (opcion == 1){
+                        File f = new File("empleados.txt");
+                        obx.lerEmpleados(f,plantilla);
+                        }
+                    } catch (FileNotFoundException ex) {
+                        System.out.println("Error. Archivo no encontrado");
+                    } catch (NullPointerException ex) {
+                        System.err.println("Error. El archivo no existe");    
+                    }
             }
         } while (resposta != 0);
     }
