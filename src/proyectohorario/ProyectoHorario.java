@@ -24,9 +24,9 @@ public class ProyectoHorario {
         ArrayList<Empleado> plantilla = new ArrayList();
         String[][] horario = new String[17][7];
         String[] horas = {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00",
-            "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", 
+            "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00",
             "22:00", "23:00", "24:00", "01:00"};
-        String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", 
+        String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes",
             "Sábado", "Domingo"};
         ArrayList<Integer> horasMax = new ArrayList();
         int resposta;
@@ -37,6 +37,7 @@ public class ProyectoHorario {
                     + "\n 3.-Crear horario."
                     + "\n 4.-Mostrar horario."
                     + "\n 5.-Imprimir horario."
+                    + "\n 6.-Dar de baja empleado."
                     + "\n 0.-Salir.");
             Scanner sc = new Scanner(System.in);
             resposta = sc.nextInt();
@@ -59,6 +60,13 @@ public class ProyectoHorario {
                     break;
                 case 5:
                     obx.imprimir("horario.txt", horario, horas, dias);
+                    break;
+                case 6:
+                    try {
+                        obx.borrarEmpleados(plantilla);
+                    } catch (NullPointerException ex) {
+                        System.err.println("Error. " + ex.getMessage());
+                    }
                     break;
             }
         } while (resposta != 0);

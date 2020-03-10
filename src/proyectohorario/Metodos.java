@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  *
@@ -92,7 +93,7 @@ public class Metodos {
 
     public void amosarHorario(String[][] horario, String[] horas, String[] dias) {
         if (horario[0][0] == null) {
-            System.out.println("El horario no ha sido creado.");
+            System.err.println("El horario no ha sido creado.");
         } else {
             System.out.print("Horas/Días   ");
             for (int i = 0; i < dias.length; i++) {
@@ -248,12 +249,34 @@ public class Metodos {
             }
         } catch (IOException ex) {
             System.err.println("Error al escribir el archivo" + ex.getMessage());
+        }catch (RuntimeException e){
+            System.err.println("Error, el horario no ha sido creado previamente.");
         } finally {
             esc.close();
         }
     }
 
-    public void leerEmpleados() {
+    public void borrarEmpleados(ArrayList<Empleado> plantilla) throws NullPointerException {
+        if (plantilla.isEmpty()) {
+            throw new NullPointerException("El ArrayList está vacío.");
+        } else {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Qué empleado desea dar de baja?(Buscar por apellido)");
+            String apellido = sc.nextLine();
+            for (int i = 0; i < plantilla.size(); i++) {
+                if (apellido.equalsIgnoreCase(plantilla.get(i).getApellido1())) {
+                    System.out.println(plantilla.get(i).toString());
 
+                }
+            }
+            System.out.println("Escriba el número de identificación que desea dar de baja.");
+            int numero = sc.nextInt();
+            for (int i = 0; i < plantilla.size(); i++) {
+                if (numero == plantilla.get(i).getId()) {
+                    plantilla.remove(i);
+                }
+            }
+
+        }
     }
 }
