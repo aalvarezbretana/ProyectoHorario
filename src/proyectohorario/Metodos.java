@@ -26,6 +26,7 @@ Scanner sc;
                 PedirDatos.pedirString("Primer apellido:"),
                 PedirDatos.pedirString("Segundo apellido:"),
                 PedirDatos.pedirHoras("Número de horas:"));
+        System.out.println("Empleado creado.");
         return e;
     }
 
@@ -52,11 +53,12 @@ Scanner sc;
     public void crearHorario(String[][] horario, ArrayList<Empleado> plantilla,
             String[] dias, String[] horas, ArrayList<Integer> horasMax) {
         int aleatorio = (int) Math.floor(Math.random() * (plantilla.size()));
-        int numero;
+        int numero=0;
         int num_ale;
         int horasT = horasTotales(plantilla);
         horasMaximas(plantilla, horasMax);
-        if (horasT >= 119) {
+        if (horasT >= 112) {
+            do{
             for (int k = 0; k < dias.length; k++) {
                 do {
                     num_ale = aleatorio;
@@ -81,10 +83,11 @@ Scanner sc;
                     numero++;
                 }
             }
+            }while(numero>8);
             System.out.println("Horario creado");
         } else {
             System.err.println("No se cumplen las horas mínimas "
-                    + "para cubrir el horario total semanal(119 horas)");
+                    + "para cubrir el horario total semanal(112 horas)");
         }
     }
 
@@ -244,6 +247,7 @@ Scanner sc;
                     }
                 }
             }
+            System.out.println("Horario impreso.");
         } catch (IOException ex) {
             System.err.println("Error al escribir el archivo" + ex.getMessage());
         }catch (RuntimeException e){
@@ -282,6 +286,7 @@ if (!fich.exists()) {
     } else {
     if (!plantilla.isEmpty()) {
     plantilla.removeAll(plantilla);
+    Empleado.id=1;
         System.out.println("ArrayList borrado");
     }
     sc = new Scanner(fich).useDelimiter(",\\s*"); //separa con comas

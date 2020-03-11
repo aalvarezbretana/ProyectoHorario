@@ -1,2 +1,4 @@
-Abelardo, Alvarez, Bretaña, 20,
+Abelardo, Alvarez, Bretaña, 25,
 Ivan, Rodriguez, Steuerberg, 30,
+Noe, Diaz, Dos Santos, 40,
+Jose Luis, Alvarez, Bretaña, 40,
