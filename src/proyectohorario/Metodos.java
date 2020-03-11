@@ -17,7 +17,8 @@ import java.util.Scanner;
  * @author aalvarezbretana
  */
 public class Metodos {
-Scanner sc;
+
+    Scanner sc;
     PrintWriter esc = null;
     FileWriter arch;
 
@@ -53,37 +54,37 @@ Scanner sc;
     public void crearHorario(String[][] horario, ArrayList<Empleado> plantilla,
             String[] dias, String[] horas, ArrayList<Integer> horasMax) {
         int aleatorio = (int) Math.floor(Math.random() * (plantilla.size()));
-        int numero=0;
+        int numero = 0;
         int num_ale;
         int horasT = horasTotales(plantilla);
         horasMaximas(plantilla, horasMax);
         if (horasT >= 112) {
-            do{
-            for (int k = 0; k < dias.length; k++) {
-                do {
-                    num_ale = aleatorio;
-                    aleatorio = (int) Math.floor(Math.random()
-                            * (plantilla.size()));
-                } while (num_ale == aleatorio || horasMax.get(aleatorio)
-                        == plantilla.get(aleatorio).getNum_horas());
-                numero = 0;
-                for (int i = 0; i < horas.length; i++) {
-                    if (numero == 8 || horasMax.get(aleatorio)
-                            == plantilla.get(aleatorio).getNum_horas()) {
-                        do {
-                            num_ale = aleatorio;
-                            aleatorio = (int) Math.floor(Math.random()
-                                    * (plantilla.size()));
-                            numero = 0;
-                        } while (num_ale == aleatorio || horasMax.get(aleatorio)
-                                == plantilla.get(aleatorio).getNum_horas());
+            do {
+                for (int k = 0; k < dias.length; k++) {
+                    do {
+                        num_ale = aleatorio;
+                        aleatorio = (int) Math.floor(Math.random()
+                                * (plantilla.size()));
+                    } while (num_ale == aleatorio || horasMax.get(aleatorio)
+                            == plantilla.get(aleatorio).getNum_horas());
+                    numero = 0;
+                    for (int i = 0; i < horas.length; i++) {
+                        if (numero == 8 || horasMax.get(aleatorio)
+                                == plantilla.get(aleatorio).getNum_horas()) {
+                            do {
+                                num_ale = aleatorio;
+                                aleatorio = (int) Math.floor(Math.random()
+                                        * (plantilla.size()));
+                                numero = 0;
+                            } while (num_ale == aleatorio || horasMax.get(aleatorio)
+                                    == plantilla.get(aleatorio).getNum_horas());
+                        }
+                        horario[i][k] = plantilla.get(aleatorio).getNombre();
+                        horasMax.set(aleatorio, horasMax.get(aleatorio) + 1);
+                        numero++;
                     }
-                    horario[i][k] = plantilla.get(aleatorio).getNombre();
-                    horasMax.set(aleatorio, horasMax.get(aleatorio) + 1);
-                    numero++;
                 }
-            }
-            }while(numero>8);
+            } while (numero > 8);
             System.out.println("Horario creado");
         } else {
             System.err.println("No se cumplen las horas mínimas "
@@ -250,7 +251,7 @@ Scanner sc;
             System.out.println("Horario impreso.");
         } catch (IOException ex) {
             System.err.println("Error al escribir el archivo" + ex.getMessage());
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.err.println("Error, el horario no ha sido creado previamente.");
         } finally {
             esc.close();
@@ -280,30 +281,28 @@ Scanner sc;
 
         }
     }
-public void lerEmpleados(File fich,ArrayList<Empleado>plantilla) throws FileNotFoundException{
-if (!fich.exists()) {
-        throw new NullPointerException("El ArrayList está vacío.");
-    } else {
-    if (!plantilla.isEmpty()) {
-    plantilla.removeAll(plantilla);
-    Empleado.id=1;
-        System.out.println("ArrayList borrado");
-    }
-    sc = new Scanner(fich).useDelimiter(",\\s*"); //separa con comas
-    while(sc.hasNextLine()){
-    String nombre=sc.next();
-    String apellido=sc.next();
-    String apellido2=sc.next();
-    int numHoras= Integer.parseInt(sc.next());
-    sc.nextLine();
-    Empleado empl = new Empleado(nombre,apellido,apellido2,numHoras);
-    plantilla.add(empl);
-        System.out.println("Empleado añadido al ArrayList");
-    }  
-    
-    
 
-    
-}    
-}    
+    public void lerEmpleados(File fich, ArrayList<Empleado> plantilla) throws FileNotFoundException {
+        if (!fich.exists()) {
+            throw new NullPointerException("El ArrayList está vacío.");
+        } else {
+            if (!plantilla.isEmpty()) {
+                plantilla.removeAll(plantilla);
+                Empleado.id = 1;
+                System.out.println("ArrayList borrado");
+            }
+            sc = new Scanner(fich).useDelimiter(",\\s*"); //separa con comas
+            while (sc.hasNextLine()) {
+                String nombre = sc.next();
+                String apellido = sc.next();
+                String apellido2 = sc.next();
+                int numHoras = Integer.parseInt(sc.next());
+                sc.nextLine();
+                Empleado empl = new Empleado(nombre, apellido, apellido2, numHoras);
+                plantilla.add(empl);
+                System.out.println("Empleado añadido al ArrayList");
+            }
+
+        }
+    }
 }

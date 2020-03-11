@@ -4,6 +4,7 @@ import empleado.Empleado;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,7 @@ public class ProyectoHorario {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         Metodos obx = new Metodos();
         ArrayList<Empleado> plantilla = new ArrayList();
         String[][] horario = new String[16][7];
@@ -27,7 +28,7 @@ public class ProyectoHorario {
         String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes",
             "Sábado", "Domingo"};
         ArrayList<Integer> horasMax = new ArrayList();
-        int resposta;
+        int resposta=0;
         do {
             System.out.println("\nQué quieres hacer?"
                     + "\n 1.-Añadir empleado."
@@ -39,11 +40,20 @@ public class ProyectoHorario {
                     + "\n 7.-Imprimir horario."
                     + "\n 0.-Salir.");
             Scanner sc = new Scanner(System.in);
+            try{
             resposta = sc.nextInt();
+            }catch(InputMismatchException ex){
+                System.err.println("Error de escritura, vuelva a ejecutar el programa");
+            }
             switch (resposta) {
                 case 1:
+                    try{
                     plantilla.add(obx.crearEmpleado());
+                    }catch(InputMismatchException ex){
+                        System.err.println("Error de escritura. Imposible añadir empleado.");
+                    }
                     break;
+                    
                 case 2:
                     try {
                         int opcion = Integer.parseInt(JOptionPane.showInputDialog("Aviso. "
@@ -54,9 +64,9 @@ public class ProyectoHorario {
                             obx.lerEmpleados(f, plantilla);
                         }
                     } catch (FileNotFoundException ex) {
-                        System.out.println("Error. Archivo no encontrado");
+                        System.out.println("Error. Archivo no encontrado.");
                     } catch (NullPointerException ex) {
-                        System.err.println("Error. El archivo no existe");
+                        System.err.println("Error. El archivo no existe.");
                     }
                     break;
                 case 3:
@@ -71,6 +81,9 @@ public class ProyectoHorario {
                         obx.borrarEmpleados(plantilla);
                     } catch (NullPointerException ex) {
                         System.err.println("Error. " + ex.getMessage());
+                    }
+                    catch (InputMismatchException ex){
+                        System.err.println("Error de escritura. Imposible realizar la baja.");
                     }
                     break;
                 case 5:

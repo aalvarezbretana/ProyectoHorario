@@ -65,10 +65,10 @@ public class Empleado implements Comparable {
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + ", primer apellido: " + apellido1 
-                + ", segundo apellido: " + apellido2 
+        return "Nombre: " + nombre + ", primer apellido: " + apellido1
+                + ", segundo apellido: " + apellido2
                 + ", horas: " + num_horas + ", número de identificación: "
-                + n_id +'.';
+                + n_id + '.';
     }
 
     @Override
